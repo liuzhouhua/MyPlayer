@@ -4,22 +4,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import fragment.DiscoveritemFragment;
+import fragment.FriendsFragment;
 
 /**
  * Created by Administrator on 2016/5/13.
  */
-public class MainTabAdapter extends FragmentPagerAdapter{
+public class FriendsTabAdapter extends FragmentPagerAdapter{
 
-    private static final String[] TITLES = new String[]{"个性推荐","歌单","主播电台","排行榜"};
+    private static final String[] TITLES = new String[]{"动态","附近","好友"};
 
-    public MainTabAdapter(FragmentManager fm) {
+    public FriendsTabAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        DiscoveritemFragment mFragment = new DiscoveritemFragment();
+        FriendsFragment mFragment = new FriendsFragment();
         return mFragment;
     }
 

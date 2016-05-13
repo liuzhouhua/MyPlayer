@@ -3,20 +3,16 @@ package activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.Window;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.lzh.administrator.myplayer.R;
-import com.viewpagerindicator.TabPageIndicator;
 
-import adapter.MainTabAdapter;
 import fragment.DiscoverFragment;
+import fragment.FriendsFragment;
 import fragment.MusicFragment;
 
 
@@ -30,6 +26,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private LinearLayout mActionBarSearch;
     private DiscoverFragment mDiscoverFragment;
     private MusicFragment mMusicFragment;
+    private FriendsFragment mFriendsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,18 +76,31 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.ll_actionbar_menu:
                 break;
             case R.id.iv_actionbar_discover:
+                mActionBarDiscover.setImageResource(R.drawable.actionbar_discover_selected);
+                mActionBarMusic.setImageResource(R.drawable.actionbar_music_prs);
+                mActionBarFriends.setImageResource(R.drawable.actionbar_friends_prs);
                 if(mDiscoverFragment==null){
                     mDiscoverFragment = new DiscoverFragment();
                 }
                 ft.replace(R.id.content_layout,mDiscoverFragment);
                 break;
             case R.id.iv_actionbar_music:
+                mActionBarDiscover.setImageResource(R.drawable.actionbar_discover_prs);
+                mActionBarMusic.setImageResource(R.drawable.actionbar_music_selected);
+                mActionBarFriends.setImageResource(R.drawable.actionbar_friends_prs);
                 if(mMusicFragment==null){
                     mMusicFragment = new MusicFragment();
                 }
                 ft.replace(R.id.content_layout,mMusicFragment);
                 break;
             case R.id.iv_actionbar_friends:
+                mActionBarDiscover.setImageResource(R.drawable.actionbar_discover_prs);
+                mActionBarMusic.setImageResource(R.drawable.actionbar_music_prs);
+                mActionBarFriends.setImageResource(R.drawable.actionbar_friends_selected);
+                if(mFriendsFragment==null){
+                    mFriendsFragment = new FriendsFragment();
+                }
+                ft.replace(R.id.content_layout,mFriendsFragment);
                 break;
             case R.id.ll_actionbar_search:
                 break;

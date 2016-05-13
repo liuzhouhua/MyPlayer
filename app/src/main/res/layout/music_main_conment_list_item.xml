@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="65dp">
+
+    <ImageView
+        android:id="@+id/iv_music_main_conment_list_item"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/music_icn_local"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
+        android:id="@+id/tv_music_main_conment_list_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="本地音乐"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textSize="15sp"
+        android:id="@+id/tv_music_main_conment_list_item_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/deepgrey"
+        android:text="(0)"/>
+
+</LinearLayout>
