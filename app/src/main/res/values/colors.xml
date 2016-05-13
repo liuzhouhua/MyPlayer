@@ -6,4 +6,6 @@
 
     <color name="red">#FF0000</color>
     <color name="transparentblue">#00000000</color>
+    <color name="halfred">#e28176</color>
+    <color name="yellow">#fefe00</color>
 </resources>

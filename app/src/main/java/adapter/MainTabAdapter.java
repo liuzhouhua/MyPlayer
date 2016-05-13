@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import fragment.MainItemFragment;
+import fragment.DiscoveritemFragment;
 
 /**
  * Created by Administrator on 2016/5/13.
@@ -19,8 +19,8 @@ public class MainTabAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        MainItemFragment fragment = new MainItemFragment();
-        return fragment;
+        DiscoveritemFragment mFragment = new DiscoveritemFragment();
+        return mFragment;
     }
 
     @Override

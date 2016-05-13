@@ -8,4 +8,36 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 第一步设置主题 -->
+
+    <style name="StyledIndicators" parent="@android:style/Theme.Light">
+        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
+    </style>
+
+    <!-- 第二步设置主题 -->
+    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
+        <!-- 点击时在不同状态下显示的背景色 -->
+        <item name="android:background">@drawable/custom_tab_indicator</item>
+        <!-- 分割线图片设置 -->
+        <item name="android:divider">@drawable/custom_tab_indicator_divider</item>
+        <!-- 设置分割线的显示位置，或是不显示 -->
+        <item name="android:showDividers">none</item>
+
+        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="android:textColor">@drawable/custom_tab_indicator_textcolor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:dividerPadding">10dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:fadingEdgeLength">10dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+
+
+    </style>
+
+    <!-- 第三步设置主题 -->
+    <style name="CustomTabPageIndicator.Text" parent="android:TextAppearance.Medium">
+        <item name="android:typeface">monospace</item>
+    </style>
+
 </resources>
