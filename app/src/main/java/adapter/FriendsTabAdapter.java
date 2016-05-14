@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import fragment.FriendsFragment;
+import fragment.FriendsitemFragment;
 
 /**
  * Created by Administrator on 2016/5/13.
@@ -19,7 +19,7 @@ public class FriendsTabAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        FriendsFragment mFragment = new FriendsFragment();
+        FriendsitemFragment mFragment = new FriendsitemFragment();
         return mFragment;
     }
 

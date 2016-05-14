@@ -83,6 +83,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     mDiscoverFragment = new DiscoverFragment();
                 }
                 ft.replace(R.id.content_layout,mDiscoverFragment);
+                ft.commit();
                 break;
             case R.id.iv_actionbar_music:
                 mActionBarDiscover.setImageResource(R.drawable.actionbar_discover_prs);
@@ -92,6 +93,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     mMusicFragment = new MusicFragment();
                 }
                 ft.replace(R.id.content_layout,mMusicFragment);
+                ft.commit();
                 break;
             case R.id.iv_actionbar_friends:
                 mActionBarDiscover.setImageResource(R.drawable.actionbar_discover_prs);
@@ -101,11 +103,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                     mFriendsFragment = new FriendsFragment();
                 }
                 ft.replace(R.id.content_layout,mFriendsFragment);
+                ft.commit();
                 break;
             case R.id.ll_actionbar_search:
                 break;
         }
 
-        ft.commit();
     }
 }
