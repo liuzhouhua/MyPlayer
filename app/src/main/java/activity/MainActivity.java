@@ -8,13 +8,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lzh.administrator.myplayer.R;
 
+import adapter.DrawerLayoutMenuAdapter;
 import fragment.DiscoverFragment;
 import fragment.FriendsFragment;
 import fragment.MusicFragment;
@@ -35,6 +38,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private Button mLoginBtn,mConfigBtn,mExitBtn;
     private DrawerLayout mDrawerLayout;
     private TextView mLoginDisplay;
+    private ListView mDrawerList;
+    private DrawerLayoutMenuAdapter mDrawerLayoutMenuAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         initView();
         initListener();
+        //初始化侧滑菜单
+        initDrawerLayout();
+
         // 设置默认的Fragment
         setDefaultFragment();
     }
@@ -57,6 +65,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mActionBarSearch = (LinearLayout) mActionBar.findViewById(R.id.ll_actionbar_search);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.dl_drawerLayout);
+        mDrawerList = (ListView) findViewById(R.id.lv_left_menu);
         mLoginDisplay = (TextView)findViewById(R.id.tv_login_display);
         mLoginBtn = (Button) findViewById(R.id.btn_login);
         mConfigBtn = (Button) findViewById(R.id.btn_config);
@@ -73,6 +82,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mLoginBtn.setOnClickListener(this);
         mConfigBtn.setOnClickListener(this);
         mExitBtn.setOnClickListener(this);
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+    }
+
+    public void initDrawerLayout(){
+        mDrawerLayoutMenuAdapter = new DrawerLayoutMenuAdapter(this);
+        mDrawerList.setAdapter(mDrawerLayoutMenuAdapter);
     }
 
     public void setDefaultFragment(){
@@ -138,5 +153,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
         }
 
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        }
     }
 }
