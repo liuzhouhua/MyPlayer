@@ -1,5 +1,6 @@
 package adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -20,6 +21,9 @@ public class FriendsTabAdapter extends FragmentPagerAdapter{
     @Override
     public Fragment getItem(int position) {
         FriendsitemFragment mFragment = new FriendsitemFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("test",TITLES[position]);
+        mFragment.setArguments(bundle);
         return mFragment;
     }
 
