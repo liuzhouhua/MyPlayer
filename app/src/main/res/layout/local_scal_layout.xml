@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_lay_protype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_seletor_lay_protype"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_local_scan_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/local_scan_mobile"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/local_scan_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/local_scan_scaning"
+                android:layout_centerInParent="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_music_songname_display"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:padding="5dp"
+                android:maxLines="1"
+                android:text="11111"
+                android:textSize="18sp"/>
+        </RelativeLayout>
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_back_to_music_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="3"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/btn_back_to_music"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:background="@color/red"
+            android:textColor="@color/white"
+            android:text="@string/backToMusci"/>
+
+    </LinearLayout>
+
+</LinearLayout>
