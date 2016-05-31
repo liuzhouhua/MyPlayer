@@ -8,4 +8,5 @@
     <string name="artist">我的歌手</string>
     <string name="myFavorateSong">我喜欢的音乐</string>
     <string name="backToMusci">回到我的音乐</string>
+    <string name="cancleScanMusic">取消扫描音乐</string>
 </resources>
