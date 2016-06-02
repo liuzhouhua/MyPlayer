@@ -22,7 +22,9 @@ import java.util.List;
 
 import db.DatabaseContext;
 import db.DatabaseHelper;
+import manager.SongManager;
 import model.Song;
+import utils.SharePreferencesHelp;
 
 /**
  * Created by Administrator on 2016/5/18.
@@ -64,7 +66,7 @@ public class ProtypeActivity extends FragmentActivity{
 
         DatabaseContext databaseContext = new DatabaseContext(this);
 
-        databaseHelper = new DatabaseHelper(databaseContext);
+        databaseHelper = DatabaseHelper.getInstance(this);
 
 
         ivLayProtype.setOnClickListener(new View.OnClickListener() {
@@ -192,7 +194,10 @@ public class ProtypeActivity extends FragmentActivity{
                     }
                 }
 
+                SongManager.getInstance().setmSongs(mSongs);
+                SharePreferencesHelp.getInstance(ProtypeActivity.this).setTagForScanMusic(true);
                 databaseHelper.insert(DatabaseHelper.TABLE_LOCAL_MUSIC,valuesList);
+
 
                 message = new Message();
                 message.what = SCAN_MUSIC_END;

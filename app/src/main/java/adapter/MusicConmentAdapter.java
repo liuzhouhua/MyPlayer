@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.lzh.administrator.myplayer.R;
 
+import utils.SharePreferencesHelp;
+
 /**
  * Created by Administrator on 2016/5/13.
  */
@@ -46,7 +48,15 @@ public class MusicConmentAdapter extends BaseAdapter{
 
         viewHolder.icon.setImageResource(DIS_IMG[position % DIS_IMG.length]);
         viewHolder.mTextDisplay.setText(mContext.getString(DIS_TEXT[position % DIS_TEXT.length]));
-        viewHolder.mTextCount.setText("(0)");
+        if(position==0){
+            viewHolder.mTextCount.setText("("+SharePreferencesHelp.getInstance(mContext).getLocalMusicCount()+")");
+        }else if(position==1){
+            viewHolder.mTextCount.setText("("+0+")");
+        }else if(position==2){
+            viewHolder.mTextCount.setText("("+0+")");
+        }else if(position==3){
+            viewHolder.mTextCount.setText("("+0+")");
+        }
 
         return view;
     }

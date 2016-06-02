@@ -95,4 +95,20 @@ public class Song {
     public void setmAlbumImgPath(String mAlbumImgPath) {
         this.mAlbumImgPath = mAlbumImgPath;
     }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "mTitile='" + mTitile + '\'' +
+                ", mSinger='" + mSinger + '\'' +
+                ", mAlbum='" + mAlbum + '\'' +
+                ", mPath='" + mPath + '\'' +
+                ", mDuration='" + mDuration + '\'' +
+                ", mFileSize='" + mFileSize + '\'' +
+                ", mLrcTitle='" + mLrcTitle + '\'' +
+                ", mLrcPath='" + mLrcPath + '\'' +
+                ", mAlbumImgTitle='" + mAlbumImgTitle + '\'' +
+                ", mAlbumImgPath='" + mAlbumImgPath + '\'' +
+                '}';
+    }
 }

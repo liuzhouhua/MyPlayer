@@ -1,6 +1,7 @@
 package fragment;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,10 +18,16 @@ import android.widget.TextView;
 import com.lzh.administrator.myplayer.R;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 import activity.ProtypeActivity;
 import adapter.MusicConmentAdapter;
 import adapter.MusicCreatedMusicListAdapter;
+import constant.LocalMusicConstant;
+import db.DatabaseHelper;
+import manager.SongManager;
+import model.Song;
+import utils.SharePreferencesHelp;
 
 /**
  * Created by lzh27651 on 2016/5/13.
@@ -37,6 +44,8 @@ public class MusicFragment extends Fragment{
     private MusicConmentAdapter mMusicConmentAdapter;
     private MusicCreatedMusicListAdapter mMusicCreatedMusicListAdapter;
     private ViewStub viewStub;
+
+    private DatabaseHelper databaseHelper;
 
     private boolean isOpen = true;
 
@@ -56,11 +65,13 @@ public class MusicFragment extends Fragment{
         mListCofig = (ImageView) view.findViewById(R.id.iv_music_main_imageview_cofig);
         mMusicOrderList = (ListView) view.findViewById(R.id.lv_music_main_created_list);
 
+
         mMusicConmentAdapter = new MusicConmentAdapter(getActivity());
         viewStub= new ViewStub(getActivity());
         mConmentList.addFooterView(viewStub);
         mConmentList.setAdapter(mMusicConmentAdapter);
         mConmentList.setFooterDividersEnabled(true);
+
 
         mMusicCreatedMusicListAdapter = new MusicCreatedMusicListAdapter(getActivity());
         mMusicOrderList.addFooterView(viewStub);
@@ -94,10 +105,15 @@ public class MusicFragment extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-
-                        Intent intent = new Intent(getActivity(), ProtypeActivity.class);
-                        startActivity(intent);
-
+                        if(SharePreferencesHelp.getInstance(getActivity()).getTagForScanMusic()){
+                            if (SharePreferencesHelp.getInstance(getActivity()).getLocalMusicCount() <= 0
+                                    || SongManager.getInstance().getmSongs() == null) {
+                                queryMusic();
+                            }
+                        }else{
+                            Intent intent = new Intent(getActivity(), ProtypeActivity.class);
+                            startActivity(intent);
+                        }
                         break;
                     case 1:
                         break;
@@ -110,6 +126,34 @@ public class MusicFragment extends Fragment{
         });
 
         return view;
+    }
+
+
+    private void queryMusic() {
+        databaseHelper = DatabaseHelper.getInstance(getActivity());
+        List<Song> all = databaseHelper.queryForList(new DatabaseHelper.RowMapper<Song>() {
+            @Override
+            public Song mapRow(Cursor cursor, int index) {
+                Song song = new Song();
+                song.setmTitile(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_TITLE)));
+                song.setmSinger(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_ARTIST)));
+                song.setmAlbum(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_ALBUM)));
+                song.setmPath(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_PATH)));
+                song.setmDuration(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_DURATION)));
+                song.setmFileSize(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_FILE_SIZE)));
+                song.setmAlbumImgPath(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_ALBUM_IMG_PATH)));
+                song.setmAlbumImgTitle(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_ALBUM_IMG_TITLE)));
+                song.setmLrcPath(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_LRC_PATH)));
+                song.setmLrcTitle(cursor.getString(cursor.getColumnIndex(LocalMusicConstant.LOCAL_MUSIC_LRC_TITLE)));
+                return song;
+            }
+        },"select * from "+DatabaseHelper.TABLE_LOCAL_MUSIC,null);
+
+        if(all!=null && all.size()>0){
+            SongManager.getInstance().setmSongs(all);
+            SharePreferencesHelp.getInstance(getActivity()).setLocalMusicCount(all.size());
+            mMusicConmentAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override

@@ -2,9 +2,11 @@ package db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final int version = 1; //数据库版本
 
-    private static DatabaseHelper instance = null;
+    private static DatabaseHelper instance;
+    private SQLiteDatabase mDb;
 
     public static String TABLE_LOCAL_MUSIC = "localmusic";
 
@@ -41,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public synchronized static DatabaseHelper getInstance(Context context) {
         if(instance==null){
             instance = new DatabaseHelper(context);
+            instance.mDb = instance.getWritableDatabase();
         }
         return instance;
     }
@@ -76,19 +80,54 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         if(contents == null){
             return;
         }
-        SQLiteDatabase dataBase = null;
 
-        dataBase = getWritableDatabase();
-        dataBase.beginTransaction();
+        mDb.beginTransaction();
 
         for(ContentValues values : contents){
-            dataBase.insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+            mDb.insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE);
         }
 
-        dataBase.setTransactionSuccessful();
-        dataBase.endTransaction();
-
+        mDb.setTransactionSuccessful();
+        mDb.endTransaction();
+        contents.clear();
     }
 
+
+    /**
+     * 查询data，以列表形式返回
+     * @param rowMapper
+     * @param sql
+     * @param selectionArgs
+     * @param <T>
+     * @return
+     */
+    public <T> List<T> queryForList(RowMapper<T> rowMapper, String sql,
+                                    String[] selectionArgs){
+        List<T> all;
+        Cursor cursor;
+
+        mDb.beginTransaction();
+
+        cursor = mDb.rawQuery(sql,selectionArgs);
+        all = new ArrayList<>();
+        T t = null;
+        while(cursor.moveToNext()){
+            t = rowMapper.mapRow(cursor,cursor.getPosition());
+            if(t!=null){
+                all.add(t);
+            }
+        }
+
+        mDb.setTransactionSuccessful();
+        mDb.endTransaction();
+
+        cursor.close();
+        return all;
+    }
+
+
+    public interface RowMapper<T> {
+        public T mapRow(Cursor cursor, int index);
+    }
 
 }
