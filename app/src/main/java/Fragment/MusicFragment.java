@@ -20,6 +20,7 @@ import com.lzh.administrator.myplayer.R;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import activity.LocalMusicActivity;
 import activity.ProtypeActivity;
 import adapter.MusicConmentAdapter;
 import adapter.MusicCreatedMusicListAdapter;
@@ -110,6 +111,8 @@ public class MusicFragment extends Fragment{
                                     || SongManager.getInstance().getmSongs() == null) {
                                 queryMusic();
                             }
+                            Intent intent = new Intent(getActivity(), LocalMusicActivity.class);
+                            startActivity(intent);
                         }else{
                             Intent intent = new Intent(getActivity(), ProtypeActivity.class);
                             startActivity(intent);
