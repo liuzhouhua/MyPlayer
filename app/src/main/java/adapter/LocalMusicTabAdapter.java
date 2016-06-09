@@ -1,11 +1,10 @@
 package adapter;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import fragment.LocalMusicitemFragment;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/5/13.
@@ -13,18 +12,20 @@ import fragment.LocalMusicitemFragment;
 public class LocalMusicTabAdapter extends FragmentPagerAdapter{
 
     private static final String[] TITLES = new String[]{"单曲","歌手","专辑","文件夹"};
+    private List<Fragment> fragments;
 
     public LocalMusicTabAdapter(FragmentManager fm) {
         super(fm);
     }
 
+    public LocalMusicTabAdapter(FragmentManager fm, List<Fragment> fragments) {
+        super(fm);
+        this.fragments = fragments;
+    }
+
     @Override
     public Fragment getItem(int position) {
-        LocalMusicitemFragment mFragment = new LocalMusicitemFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("test",TITLES[position]);
-        mFragment.setArguments(bundle);
-        return mFragment;
+        return fragments.get(position);
     }
 
     @Override

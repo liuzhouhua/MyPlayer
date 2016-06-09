@@ -9,4 +9,6 @@
     <string name="myFavorateSong">我喜欢的音乐</string>
     <string name="backToMusci">回到我的音乐</string>
     <string name="cancleScanMusic">取消扫描音乐</string>
+    <string name="sampleMusicName">夜空中最亮的星</string>
+    <string name="sampleMusicSinger">逃跑计划-世界</string>
 </resources>

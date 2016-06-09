@@ -1,6 +1,7 @@
 package activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -11,7 +12,11 @@ import android.widget.LinearLayout;
 import com.lzh.administrator.myplayer.R;
 import com.viewpagerindicator.TabPageIndicator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import adapter.LocalMusicTabAdapter;
+import fragment.LocalMusicitemFragment;
 
 /**
  * Created by Administrator on 2016/6/3.
@@ -25,6 +30,8 @@ public class LocalMusicActivity extends FragmentActivity {
     private LinearLayout mActionBarBack;
     private LinearLayout mSearch;
     private LinearLayout mMore;
+
+    private List<Fragment> fragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,13 @@ public class LocalMusicActivity extends FragmentActivity {
         this.mSearch = (LinearLayout)mLocalMusicActionbarLayout.findViewById(R.id.ll_actionbar_search);
         this.mMore = (LinearLayout)mLocalMusicActionbarLayout.findViewById(R.id.ll_actionbar_more);
 
-        mAdapter = new LocalMusicTabAdapter(getSupportFragmentManager());
+        fragments = new ArrayList<>();
+        fragments.add(new LocalMusicitemFragment());
+
+        fragments.add(new LocalMusicitemFragment());
+        fragments.add(new LocalMusicitemFragment());
+        fragments.add(new LocalMusicitemFragment());
+        mAdapter = new LocalMusicTabAdapter(getSupportFragmentManager(),fragments);
         mVpViewPager.setAdapter(mAdapter);
         mTabPagerIndicator.setViewPager(mVpViewPager,0);
         mTabPagerIndicator.setVisibility(View.VISIBLE);
