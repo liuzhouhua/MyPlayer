@@ -112,6 +112,7 @@ public class MusicFragment extends Fragment{
                                 queryMusic();
                             }
                             Intent intent = new Intent(getActivity(), LocalMusicActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                             startActivity(intent);
                         }else{
                             Intent intent = new Intent(getActivity(), ProtypeActivity.class);

@@ -1,5 +1,6 @@
 package activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -160,5 +161,29 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    /**
+     * 设置期待Activity时没有动画
+     * @param intent
+     */
+    @Override
+    public void startActivity(Intent intent) {
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        super.startActivity(intent);
+    }
+
+    /**
+     * 防止退出Activity时闪烁
+     */
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,0);
     }
 }

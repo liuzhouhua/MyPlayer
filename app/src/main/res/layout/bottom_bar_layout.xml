@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/iv_bottom_bar_album_img"
+        android:src="@drawable/placeholder_disk_play_song"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_bottom_bar_song_name"
+        android:text="@string/sampleMusicName"
+        android:textSize="16sp"
+        android:layout_toRightOf="@id/iv_bottom_bar_album_img"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_bottom_bar_songer"
+        android:text="@string/sampleMusicSinger"
+        android:layout_toRightOf="@id/iv_bottom_bar_album_img"
+        android:layout_below="@id/tv_bottom_bar_song_name"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/deepgrey"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_bar_play_next"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:background="@drawable/btn_selector_default_bg"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/playbar_btn_next"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_bar_play_or_pause"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:background="@drawable/btn_selector_default_bg"
+        android:layout_toLeftOf="@id/ll_bottom_bar_play_next">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/playbar_btn_play"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_bar_menu_list"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:background="@drawable/btn_selector_default_bg"
+        android:layout_toLeftOf="@id/ll_bottom_bar_play_or_pause">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/playbar_btn_playlist"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

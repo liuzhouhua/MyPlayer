@@ -63,7 +63,7 @@
                 android:layout_weight="1"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:background="@drawable/btn_selector_bg"
+                android:background="@drawable/btn_selector_white_bg"
                 android:text="设置"/>
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_weight="1"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:background="@drawable/btn_selector_bg"
+                android:background="@drawable/btn_selector_white_bg"
                 android:text="退出应用"/>
 
         </LinearLayout>

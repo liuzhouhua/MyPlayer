@@ -29,7 +29,11 @@ public class LocalMusicFragmentAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return songs.size();
+        if(songs!=null){
+            return songs.size();
+        }else{
+            return 0;
+        }
     }
 
     @Override
@@ -51,8 +55,12 @@ public class LocalMusicFragmentAdapter extends BaseAdapter{
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.tvmusicname.setText(songs.get(position).getmTitile());
-        viewHolder.tvmusicSinger.setText(songs.get(position).getmSinger());
+        Song song = songs.get(position);
+        if(song!=null){
+            viewHolder.tvmusicname.setText(song.getmTitile());
+            viewHolder.tvmusicSinger.setText(song.getmSinger());
+        }
+
         return view;
     }
 
@@ -63,7 +71,11 @@ public class LocalMusicFragmentAdapter extends BaseAdapter{
 
     @Override
     public Song getItem(int position) {
-        return songs.get(position);
+        if(songs!=null){
+            return songs.get(position);
+        }else{
+            return null;
+        }
     }
 
     class ViewHolder {
