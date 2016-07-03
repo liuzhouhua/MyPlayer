@@ -34,12 +34,12 @@ Missing Android Support Repository:
 -----------------------------------
 Some useful libraries, such as the Android Support Library, are
 installed from a special Maven repository, which should be installed
-via the SDK manager.
+via the SDK com.lzh.administrator.myplayer.manager.
 
 It looks like this library is missing from your SDK installation at:
 E:\SoftWare\adt-bundle-windows-x86_64-20140702\adt-bundle-windows-x86_64-20140702\sdk
 
-To install it, open the SDK manager, and in the Extras category,
+To install it, open the SDK com.lzh.administrator.myplayer.manager, and in the Extras category,
 select "Android Support Repository". You may also want to install the
 "Google Repository" if you want to use libraries like Google Play
 Services.
